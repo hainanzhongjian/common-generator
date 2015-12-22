@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 参考文档：http://generator.sturgeon.mopaas.com/configreference/table.html  -->
+<generatorConfiguration>
+	<!-- 驱动jar包，mssql使用jtds-1.2.jar,mysql使用mysql-connector-java-5.0.8-bin.jar -->
+    <classPathEntry location="F:\jar\mysql-connector-java-5.1.26.jar" />
+
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+       <!--  <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/> -->
+		
+		<commentGenerator type="com.ishidai.core.utils.MyCommentGenetatro">
+			<!-- 是否去除xml自动生成的注释 -->
+		    <property name="suppressAllComments" value="true"/>
+		    <property name="suppressDate" value="true"/>
+		</commentGenerator>
+		
+		<!-- 数据库链接名 -->                        
+		<!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://172.16.22.101:3306/jiea_center_20150921" userId="test_user" password="testpass" /> -->  
+	    <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://115.159.86.86:3306/region" userId="admin" password="123456" /> -->
+		<!--<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://172.16.7.82:3306/jdq_jiea_dev" userId="lipeilu" password="lipeilu.d9L3U0i2l" />  -->
+	    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://172.16.5.102:3306/dev_standard" userId="lipeilu" password="lipeilu.d9L3U0i2l" />
+		<!-- model名 -->
+        <javaModelGenerator targetPackage="com.puhui.jdqhome.model" targetProject="common" />
+		<!-- 配置文件 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="common" />
+		<!-- Dao层 -->
+        <javaClientGenerator targetPackage="com.puhui.jdqhome.dao" targetProject="common" type="XMLMAPPER" />
+        
+  		<!-- <table tableName="%">
+            <generatedKey column="id" sqlStatement="Mysql"/>
+        </table> -->
+        
+     	<table tableName="apply_mobile" domainObjectName="ApplyMobile">
+            <generatedKey column="id" sqlStatement="Mysql"/>
+        </table> 
+        
+      <!--  <table tableName="kn_credit_cards_base" domainObjectName="KnCreditCardsBase" 
+       			enableCountByExample="false"  enableUpdateByExample="false"  enableDeleteByExample="false" 
+				enableSelectByExample="false"  selectByExampleQueryId="false"  
+				enableDeleteByPrimaryKey="true" >
+       </table> -->
+    </context>
+</generatorConfiguration>

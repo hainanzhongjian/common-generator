@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.puhui.jdqhome.dao.ApplyMobileMapper" >
+  <resultMap id="BaseResultMap" type="com.puhui.jdqhome.model.ApplyMobile" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_no" property="applyNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="web_password" property="webPassword" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="verify_num" property="verifyNum" jdbcType="INTEGER" />
+    <result column="verify_num_time" property="verifyNumTime" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from apply_mobile
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.puhui.jdqhome.model.ApplyMobile" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into apply_mobile (id, apply_no, mobile, 
+      password, web_password, status, 
+      verify_num, verify_num_time, version, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{applyNo,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{webPassword,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{verifyNum,jdbcType=INTEGER}, #{verifyNumTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.puhui.jdqhome.model.ApplyMobile" >
+    update apply_mobile
+    set apply_no = #{applyNo,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      web_password = #{webPassword,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      verify_num = #{verifyNum,jdbcType=INTEGER},
+      verify_num_time = #{verifyNumTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, apply_no, mobile, password, web_password, status, verify_num, verify_num_time, 
+    version, create_time, update_time
+    from apply_mobile
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, apply_no, mobile, password, web_password, status, verify_num, verify_num_time, 
+    version, create_time, update_time
+    from apply_mobile
+  </select>
+</mapper>
